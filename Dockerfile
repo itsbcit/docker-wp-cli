@@ -13,7 +13,9 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 
 RUN apk add --no-cache \
-        tini php7-ldap
+        tini \
+        php7-ldap \
+        php7-redis
 
 # Add docker-entrypoint script base
 ENV DE_VERSION v1.0
