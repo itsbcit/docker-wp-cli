@@ -1,35 +1,13 @@
-FROM php:7-alpine
+FROM bcit/openshift-php-fpm:7.3.9
 
-LABEL maintainer="jesse@weisner.ca"
-
+ENV RUNUSER wordpress
 ENV PAGER more
-ENV RUNUSER none
-ENV HOME /application
 
-RUN docker-php-ext-install mysqli
+ADD https://github.com/wp-cli/wp-cli/releases/download/v2.3.0/wp-cli-2.3.0.phar \
+    /usr/local/bin/wp
+RUN chmod 555 /usr/local/bin/wp \
+ && adduser -D -h /application wordpress
 
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+USER wordpress
 
-RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
-
-RUN apk add --no-cache \
-        tini \
-        php7-ldap \
-        php7-redis
-
-# Add docker-entrypoint script base
-ENV DE_VERSION v1.0
-ADD https://github.com/itsbcit/docker-entrypoint/releases/download/${DE_VERSION}/docker-entrypoint.tar.gz /docker-entrypoint.tar.gz
-RUN tar zxvf docker-entrypoint.tar.gz && rm -f docker-entrypoint.tar.gz
-RUN chmod -R 555 /docker-entrypoint.*
-
-# Allow resolve-userid.sh script to run
-RUN chmod 664 /etc/passwd /etc/group
-
-RUN mkdir /application && chmod 775 /application
-VOLUME /application
-
-WORKDIR /application
-
-ENTRYPOINT ["/sbin/tini", "--", "/docker-entrypoint.sh"]
-CMD ["tail", "-f", "/dev/null"]
+CMD ["init-loop"]

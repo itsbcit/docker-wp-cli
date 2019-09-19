@@ -1,0 +1,9 @@
+---
+image_name: openshift-wp-cli
+labels:
+  maintainer: 'chriswood.ca@gmail.com,jesse@weisner.ca'
+  alpine_version: '3.10'
+  php_version: '7.3.9'
+  wpcli_version: '2.3.0'
+suffixes:
+  - '2.3.0'
