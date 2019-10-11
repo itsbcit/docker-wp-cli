@@ -1,4 +1,4 @@
-FROM bcit/openshift-php-fpm:7.3-latest-latest
+FROM bcit/openshift-php-fpm:7.3-debug-latest
 
 ENV RUNUSER wordpress
 ENV PAGER more

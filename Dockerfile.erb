@@ -1,4 +1,8 @@
-FROM bcit/openshift-php-fpm:<%= image.labels['php_version'] %>
+<% if image.variant == 'debug' -%>
+FROM bcit/openshift-php-fpm:<%= image.labels['php_version'] %>-debug-latest
+<% else -%>
+FROM bcit/openshift-php-fpm:<%= image.labels['php_version'] %>-latest-latest
+<% end -%>
 
 ENV RUNUSER wordpress
 ENV PAGER more
