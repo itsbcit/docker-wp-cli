@@ -1,13 +1,13 @@
 <% if image.variant == 'debug' -%>
-FROM bcit/openshift-php-fpm:<%= image.labels['php_version'] %>-debug-latest
+FROM bcit/openshift-php-fpm:<%= image.vars['php_version'] %>-debug-latest
 <% else -%>
-FROM bcit/openshift-php-fpm:<%= image.labels['php_version'] %>-latest-latest
+FROM bcit/openshift-php-fpm:<%= image.vars['php_version'] %>-latest-latest
 <% end -%>
 
 ENV RUNUSER wordpress
 ENV PAGER more
 
-ADD https://github.com/wp-cli/wp-cli/releases/download/v<%= image.labels['wpcli_version'] %>/wp-cli-<%= image.labels['wpcli_version'] %>.phar \
+ADD https://github.com/wp-cli/wp-cli/releases/download/v<%= image.vars['wpcli_version'] %>/wp-cli-<%= image.vars['wpcli_version'] %>.phar \
     /usr/local/bin/wp
 RUN chmod 555 /usr/local/bin/wp \
  && adduser -D -h /application wordpress

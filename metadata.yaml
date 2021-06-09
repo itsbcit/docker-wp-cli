@@ -1,12 +1,26 @@
 ---
 image_name: openshift-wp-cli
+registries:
+  - url: bcit.io
+  - url: docker.io
+    org_name: bcit
 labels:
   maintainer: 'chriswood.ca@gmail.com,jesse@weisner.ca'
-  alpine_version: '3.10'
-  php_version: '7.3'
-  wpcli_version: '2.3.0'
-suffixes:
-  - '2.3.0'
+versions:
+  'php7.3-2.3':
+    version_tags:
+      - 'php7.3-2.3.0'
+      - 'php7.3-2.3'
+    vars:
+      php_version: '7.3'
+      wpcli_version: '2.3.0'
+  'php7.4-2.5':
+    version_tags:
+      - 'php7.4-2.5.0'
+      - 'php7.4-2.5'
+    vars:
+      php_version: '7.4'
+      wpcli_version: '2.5.0'
 variants:
   '':
   debug:
