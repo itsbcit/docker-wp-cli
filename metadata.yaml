@@ -2,8 +2,6 @@
 image_name: openshift-wp-cli
 registries:
   - url: bcit.io
-  - url: docker.io
-    org_name: bcit
 labels:
   maintainer: 'chriswood.ca@gmail.com,jesse@weisner.ca'
 versions:
