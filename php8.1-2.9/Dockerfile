@@ -1,9 +1,9 @@
-FROM bcit.io/php-fpm:<%= image.vars['php_version'] %>-latest
+FROM bcit.io/php-fpm:8.1-latest
 
 # RUN yum install -y less \
 #   && rm -rf /var/cache/yum
 
-ADD https://github.com/wp-cli/wp-cli/releases/download/v<%= image.vars['wpcli_version'] %>/wp-cli-<%= image.vars['wpcli_version'] %>.phar \
+ADD https://github.com/wp-cli/wp-cli/releases/download/v2.9.0/wp-cli-2.9.0.phar \
     /usr/local/bin/wp
 RUN chmod 555 /usr/local/bin/wp \
  && adduser -D -h /application wordpress \
